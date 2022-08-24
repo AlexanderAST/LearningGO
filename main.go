@@ -11,6 +11,7 @@ type User struct {
 	Age                   uint16
 	Money                 int16
 	Ave_grades, Happiness float64
+	Hobbies               []string
 }
 
 func (u User) getAllinfo() string {
@@ -21,7 +22,7 @@ func (u *User) setNewname(newName string) {
 }
 
 func home_page(w http.ResponseWriter, r *http.Request) {
-	john := User{Name: "Sanya", Age: 18, Money: 5, Ave_grades: 4.5, Happiness: 100}
+	john := User{Name: "Sanya", Age: 18, Money: 5, Ave_grades: 4.5, Happiness: 100, Hobbies: []string{"Дота,Кс,Пабг,курить,пить"}}
 	//fmt.Fprintf(w, "Eto shto moi sait ashalet`")
 	//john.setNewname("Sanya")
 	//fmt.Fprintf(w, john.getAllinfo())
