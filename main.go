@@ -34,9 +34,17 @@ func home_page(w http.ResponseWriter, r *http.Request) {
 func contacts_page(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Vtoraa stranica OOOOOOOOOOO")
 }
+func about_page(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Саня 18 лет типо кодит")
+}
+func learn_more(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "что вам больше надо то, ну ладно я сижу")
+}
 func handleRequest() {
 	http.HandleFunc("/", home_page)
 	http.HandleFunc("/contacts/", contacts_page)
+	http.HandleFunc("/about/", about_page)
+	http.HandleFunc("/learn_more/", learn_more)
 	http.ListenAndServe(":7777", nil)
 }
 func main() {
