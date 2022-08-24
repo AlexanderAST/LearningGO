@@ -2,28 +2,33 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 )
 
 type User struct {
-	name                  string
-	age                   uint16
-	money                 int16
-	ave_grades, happiness float64
+	Name                  string
+	Age                   uint16
+	Money                 int16
+	Ave_grades, Happiness float64
 }
 
 func (u User) getAllinfo() string {
-	return fmt.Sprintf("User name is: %s. He is %d and he has money: %d рублей", u.name, u.age, u.money)
+	return fmt.Sprintf("User name is: %s. He is %d and he has money: %d рублей", u.Name, u.Age, u.Money)
 }
 func (u *User) setNewname(newName string) {
-	u.name = newName
+	u.Name = newName
 }
 
 func home_page(w http.ResponseWriter, r *http.Request) {
-	john := User{name: "John", age: 18, money: 5, ave_grades: 5.5, happiness: 100}
+	john := User{Name: "Sanya", Age: 18, Money: 5, Ave_grades: 4.5, Happiness: 100}
 	//fmt.Fprintf(w, "Eto shto moi sait ashalet`")
-	john.setNewname("Sanya")
-	fmt.Fprintf(w, john.getAllinfo())
+	//john.setNewname("Sanya")
+	//fmt.Fprintf(w, john.getAllinfo())
+
+	templ, _ := template.ParseFiles("templates/home_page.html")
+	templ.Execute(w, john)
+
 }
 func contacts_page(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Vtoraa stranica OOOOOOOOOOO")
